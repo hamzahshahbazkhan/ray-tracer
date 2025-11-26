@@ -7,7 +7,9 @@ use ray::Ray;
 use vec3::{Point3, Vec3};
 
 pub fn ray_color(r: &Ray) -> Color {
-    Color::new(0., 0., 0.)
+    let unit_direction: Vec3 = vec3::unit_vector(r.direction());
+    let a = 0.5 * (unit_direction.y() + 1.);
+    (1. - a) * Color::new(1., 1., 1.) + a * Color::new(0.5, 0.7, 1.0)
 }
 
 fn main() {
@@ -48,6 +50,8 @@ fn main() {
         for i in 0..IMAGE_WIDTH {
             let pixel_center =
                 pixel00_loc + (i as f64 * pixel_delta_u) + (j as f64 * pixel_delta_v);
+
+            // ray dir is not a unit vector as this makes for a slightly faster code.
             let ray_direction = pixel_center - camera_center;
             let r = Ray::new(camera_center, ray_direction);
 
