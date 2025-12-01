@@ -39,7 +39,7 @@ fn main() {
     // Camera
     let focal_length = 1.;
     let viewport_height = 2.;
-    let viewport_width = viewport_height * (IMAGE_WIDTH / IMAGE_HEIGHT) as f64;
+    let viewport_width = viewport_height * (IMAGE_WIDTH as f64 / IMAGE_HEIGHT as f64);
     let camera_center = Point3::new(0., 0., 0.);
 
     // Calculate the vector across the horizontal and down the vertical viewport edtes.
